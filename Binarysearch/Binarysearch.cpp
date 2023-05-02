@@ -1,20 +1,64 @@
-// Binarysearch.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+using namespace std;
+
+int arr[20];
+int i;
+int n;
+
+void input()
+{
+    while (true)
+    {
+        cout << "Masukkan jumlah array : ";
+        cin >> n;
+        if (n <= 20)
+            break;
+        else
+            cout << "Array maksimal berjumlah 20 !!";
+    }
+
+    cout << "Masukkan Array";
+    for (i = 0; i < n; i++)
+    {
+        cout << "\n" << "<" << (i + 1) << ">";
+        cin >> arr[i];
+    }
+}
+
+void BinarySearch()
+{
+    int item;
+    int lower;
+    int upper;
+    int mid;
+
+    cout << "\nMasukan nilai yang dicari : ";
+    cin >> item;
+
+    lower = 0;
+    upper = n - 1;
+    while (lower <= upper)
+    {
+        mid = (lower + upper) / 2;
+        if (arr[mid] == item)
+        {
+            cout << item << "Found at position " << (mid + 1) << endl;
+            return;
+        }
+        else if (arr[mid] > item)
+        {
+            upper = mid - 1;
+        }
+        else {
+            lower = mid + 1;
+        }
+    }
+    cout << "\n" << item << "Not found\n" << endl;
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    input();
+    BinarySearch();
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
